@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glfw-test", "glfw-test\glfw-test.vcxproj", "{33333FE9-A7FD-42B5-AE96-D55CB4F1538B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube", "cube_dll\cube_dll.vcxproj", "{E6920E82-157F-44BC-8574-0D25992FB118}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "triangle", "triangle\triangle.vcxproj", "{1507871D-47DF-4C6C-B97E-3C8B167B72FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33333FE9-A7FD-42B5-AE96-D55CB4F1538B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{33333FE9-A7FD-42B5-AE96-D55CB4F1538B}.Debug|Win32.Build.0 = Debug|Win32
+		{33333FE9-A7FD-42B5-AE96-D55CB4F1538B}.Release|Win32.ActiveCfg = Release|Win32
+		{33333FE9-A7FD-42B5-AE96-D55CB4F1538B}.Release|Win32.Build.0 = Release|Win32
+		{E6920E82-157F-44BC-8574-0D25992FB118}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E6920E82-157F-44BC-8574-0D25992FB118}.Debug|Win32.Build.0 = Debug|Win32
+		{E6920E82-157F-44BC-8574-0D25992FB118}.Release|Win32.ActiveCfg = Release|Win32
+		{E6920E82-157F-44BC-8574-0D25992FB118}.Release|Win32.Build.0 = Release|Win32
+		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Debug|Win32.Build.0 = Debug|Win32
+		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Release|Win32.ActiveCfg = Release|Win32
+		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
