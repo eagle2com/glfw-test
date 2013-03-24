@@ -30,7 +30,7 @@ namespace GM
 namespace Factory
 {
 	CreateFuncMap m_create_functions;
-	CSparseList<IGameObject> m_game_objects;
+	CSparseList<IGameObject> m_game_objects(10);
 
 	IGameObject* CreateObject(std::string name)
 	{

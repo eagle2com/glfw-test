@@ -18,6 +18,7 @@ public:
 		//CONNECT(CTriangle,"sfml",onEvent)
 		CONNECT(CTriangle,"event1",onEvent1);
 		CONNECT(CTriangle,"event2",onEvent2);
+		CONNECT(CTriangle,"sfml",onsfmlEvent);
 	}
 
 	bool onsfmlEvent(void* data)

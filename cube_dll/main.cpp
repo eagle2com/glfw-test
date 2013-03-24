@@ -30,12 +30,19 @@ public:
 		//Subscribe("e",std::bind(&CCube::e,this,std::placeholders::_1));
 		//Subscribe("ev",std::bind(&CCube::e,this,std::placeholders::_1));
 		CONNECT(CCube,"triangle",onTriangle);
+		CONNECT(CCube,"sfml",onsfmlEvent);
 	}
 
 	bool Event1(void* data)
 	{
 		std::cout << "Event1 received by cube!"<<std::endl;
 		SendEvent(GetID("request_new"),new ObjectRequest("triangle"));
+		return false;
+	}
+
+	bool onsfmlEvent(void* data)
+	{
+		std::cout << "cube eceived sfml event"<<std::endl;
 		return false;
 	}
 

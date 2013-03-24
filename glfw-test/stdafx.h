@@ -29,8 +29,6 @@ using std::cin;
 #include "pugixml.hpp"
 
 //opengl math library glm
-#include <glm\glm.hpp>
-
+//#include <glm\glm.hpp>
 
 #include "SparseList.h"
-// TODO: reference additional headers your program requires here

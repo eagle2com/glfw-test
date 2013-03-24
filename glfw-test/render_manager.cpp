@@ -5,6 +5,7 @@
 #include "factory.h"
 #include "event_manager.h"
 #include "SparseList.h"
+#include "Model.h"
 
 namespace GM
 {
@@ -20,7 +21,7 @@ namespace GM
 	sf::Thread m_webthread(&WebUpdate);
 
 	std::map<std::string, UINT32> m_model_map;
-	CSparseList<CModel> m_model_list;
+	CSparseList<CModel> m_model_list(10);
 	UINT32 m_model_id = 0;
 
 	int Init()

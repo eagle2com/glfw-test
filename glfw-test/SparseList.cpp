@@ -145,3 +145,8 @@ void CSparseList<T>::foreach(bool (*callback)(T* ))
 		}
 	}
 }
+
+class CModel;
+class IGameObject;
+template class CSparseList<CModel>;
+template class CSparseList<IGameObject>;

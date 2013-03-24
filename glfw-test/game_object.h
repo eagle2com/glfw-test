@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <glm\glm.hpp>
+
 
 using std::cout;
 using std::endl;
@@ -134,6 +136,7 @@ private:
 protected:
 
 	glm::vec3 m_pos,m_rot,m_scl;
+	
 };
 
 typedef  void (IGameObject::*IGameObjectFn)(); //pointer to a void member function of IGameObject

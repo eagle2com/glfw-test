@@ -44,14 +44,14 @@
     <IncludePath>C:\Users\Peter\Documents\libs\glm-0.9.4.2;C:\Users\Peter\Documents\libs\glew-1.9.0\include;C:\Users\Peter\Documents\libs\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Peter\Documents\libs\glew-1.9.0\lib;C:\Users\Peter\Documents\libs\SFML-2.0-rc\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Users\Peter\Documents\libs\glm-0.9.4.2;C:\Users\Peter\Documents\libs\glew-1.9.0\include;C:\Users\Peter\Documents\libs\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Peter\Documents\libs\glew-1.9.0\lib;C:\Users\Peter\Documents\libs\SFML-2.0-rc\lib;$(LibraryPath)</LibraryPath>
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
-    <EnableManagedIncrementalBuild>true</EnableManagedIncrementalBuild>
+    <EnableManagedIncrementalBuild>false</EnableManagedIncrementalBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
