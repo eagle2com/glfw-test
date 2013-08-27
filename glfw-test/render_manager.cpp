@@ -95,6 +95,7 @@ namespace GM
 
 	void Launch()
 	{
+		std::chrono::milliseconds dura(30);
 		UINT64 previous_time;
 
 		static UINT32 sfml_ev_id = Event::GetID("sfml");
@@ -153,23 +154,24 @@ namespace GM
 			Event::SendEvent(update_ev_id,&dt,false);
 			GM::Event::Tick();
 			
-			sf::sleep(sf::milliseconds(30));
+			std::this_thread::sleep_for(dura);
 		}
 		Exit();
 	}
 
 	void Update()
 	{
+		std::chrono::milliseconds dura(30);
 		while(m_running)
 		{
 
-			sf::sleep(sf::milliseconds(30));
+			std::this_thread::sleep_for(dura);
 		}
 	}
 
 	void Render()
 	{
-
+		std::chrono::milliseconds dura(30);
 		/* This makes our buffer swap syncronized with the monitor's vertical refresh */
 		m_window->setVerticalSyncEnabled(true);
 		m_window->setActive(true);
@@ -191,7 +193,7 @@ namespace GM
 			m_window->display();
 			render_mutex.unlock();
 				
-			sf::sleep(sf::milliseconds(30));
+			std::this_thread::sleep_for(dura);
 		}
 		cout << "render stopping"<<endl;
 	}
