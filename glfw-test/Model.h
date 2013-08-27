@@ -9,6 +9,7 @@ public:
 	bool Load(string& name);
 	void Draw(void);	//maybe with some additional params later on?
 	bool isLoaded(void);
+	void Init(void);
 
 protected:
 	GLuint VertexArrayID;

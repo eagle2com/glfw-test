@@ -20,11 +20,21 @@ namespace GM
 	sf::Thread m_updatethread(&Update);
 	sf::Thread m_webthread(&WebUpdate);
 
-	sf::Mutex render_mutex;
+	std::thread *p_renderthread;
+	std::thread *p_updatethread;
+	std::thread *p_webthread;
+	std::recursive_mutex render_mutex;
+
+	//sf::Mutex render_mutex;
 
 	std::map<std::string, UINT32> m_model_map;
 	CSparseList<CModel> m_model_list(10);
 	UINT32 m_model_id = 0;
+
+	bool need_gl_context = false;
+	bool needed_gl_context = false;
+
+	
 
 	///REMOVE THIS
 	CModel model1;
@@ -32,8 +42,7 @@ namespace GM
 
 	int Init()
 	{
-		glewExperimental = GL_TRUE;
-		glewInit();
+		
 		LoadConfig("config/system.xml");
 		Factory::Init();
 		return EXIT_SUCCESS;
@@ -63,17 +72,20 @@ namespace GM
 
 		m_window = new sf::Window(sf::VideoMode(atoi(wc), atoi(hc)), "OpenGL", style, settings);
 		settings = m_window->getSettings();
+		glewExperimental = GL_TRUE;
+		glewInit();
 		cout << " -> "<<settings.majorVersion<<"."<<settings.minorVersion<<endl;
-		model1.Load(string("null"));
+		
 		return EXIT_SUCCESS;
 	}
 
 	void Exit()
 	{
 		m_running = false;
-		m_updatethread.wait();
-		m_renderthread.wait();
-		m_webthread.wait();
+		//m_updatethread.wait();
+		//m_renderthread.wait();
+		//m_webthread.wait();
+		p_renderthread->join();
 	}
 
 	bool isRunning()
@@ -90,7 +102,7 @@ namespace GM
 		m_running = true;
 		OpenWindow();
 		m_window->setActive(false);
-		m_renderthread.launch();
+		p_renderthread = new std::thread(Render);
 		//m_updatethread.launch();
 		//m_webthread.launch();
 		sf::Event event;
@@ -109,7 +121,7 @@ namespace GM
 				if (event.type == sf::Event::Closed)
 				{
 					// end the program
-					Exit();
+					m_running = false;
 				}
 				else if (event.type == sf::Event::Resized)
 				{
@@ -122,6 +134,18 @@ namespace GM
 					{
 						m_running = false;
 					}
+						
+					if (event.key.code == sf::Keyboard::L)
+					{
+						
+						render_mutex.lock();
+
+						model1.Init();
+						model1.Load(string("null"));
+						render_mutex.unlock();
+					}
+					
+
 
 					cout<<"[GM] Key pressed :"<<event.key.code<<endl;
 				}
@@ -153,8 +177,10 @@ namespace GM
 		cout << "started render loop"<<endl;
 		while (m_running)
 		{
+			
 			render_mutex.lock();
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			
 			///REMOVE THIS
 			if (model1.isLoaded())
 			{
@@ -164,6 +190,7 @@ namespace GM
 
 			m_window->display();
 			render_mutex.unlock();
+				
 			sf::sleep(sf::milliseconds(30));
 		}
 		cout << "render stopping"<<endl;

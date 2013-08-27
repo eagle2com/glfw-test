@@ -45,7 +45,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\Peter\Documents\libs\glm-0.9.4.2;C:\Users\Peter\Documents\libs\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\eagle2com\Documents\libs\glm-0.9.4.2;C:\Users\eagle2com\Documents\libs\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

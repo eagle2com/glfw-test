@@ -34,6 +34,12 @@ void CModel::Draw(void)
 	glDisableVertexAttribArray(0);
 }
 
+void CModel::Init(void)
+{
+	glGenVertexArrays(1, &VertexArrayID);
+	glBindVertexArray(VertexArrayID);
+}
+
 bool CModel::Load(string& name)
 {
 	if (m_isLoaded)
@@ -45,13 +51,12 @@ bool CModel::Load(string& name)
    0.0f,  1.0f, 0.0f,
 	};
 
-	glGenVertexArrays(1,&VertexArrayID);
-	glBindVertexArray(VertexArrayID);
-
 	glGenBuffers(1,&VertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 	m_isLoaded = true;
+	cout << "loaded model: " << name << endl;
+
 	return true;
 }
 
