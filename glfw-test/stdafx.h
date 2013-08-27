@@ -33,7 +33,8 @@ using std::cin;
 #include "pugixml.hpp"
 
 //opengl math library glm
-//#include <glm\glm.hpp>
+#include <glm\glm.hpp>
+#include <glm\ext.hpp>
 
 #include <string>
 using std::string;

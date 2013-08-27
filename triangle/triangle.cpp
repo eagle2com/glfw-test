@@ -47,5 +47,4 @@ public:
 	
 };
 
-
 GAME_OBJECT(CTriangle)

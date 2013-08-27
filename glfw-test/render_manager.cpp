@@ -95,6 +95,7 @@ namespace GM
 
 	void Launch()
 	{
+		
 		std::chrono::milliseconds dura(30);
 		UINT64 previous_time;
 
@@ -171,14 +172,17 @@ namespace GM
 
 	void Render()
 	{
-		
 		std::chrono::milliseconds dura(30);
 		/* This makes our buffer swap syncronized with the monitor's vertical refresh */
 		m_window->setVerticalSyncEnabled(true);
 		m_window->setActive(true);
 		glClearColor ( 0.1f, 0.1f, 0.1f, 1.0f );	
 		cout << "started render loop"<<endl;
+
 		GLuint programID = LoadShaders("shaders/vertex.glsl", "shaders/fragment.glsl");
+		GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+		IGameObject* main_cam = GM::Factory::CreateObject("camera");
+
 		while (m_running)
 		{
 			
@@ -189,6 +193,8 @@ namespace GM
 			if (model1.isLoaded())
 			{
 				glUseProgram(programID);
+				//glm::mat4 MVP = main_cam.GetMatrix() * model1.GetMatrix();
+				//glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 				model1.Draw();
 			}
 			///

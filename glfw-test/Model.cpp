@@ -4,7 +4,7 @@
 
 CModel::CModel(void) : m_isLoaded(false)
 {
-	
+	m_matrix = glm::mat4(1.0f);
 }
 
 
@@ -63,4 +63,9 @@ bool CModel::Load(string& name)
 bool CModel::isLoaded(void)
 {
 	return m_isLoaded;
+}
+
+glm::mat4 CModel::GetMatrix()
+{
+	return m_matrix;
 }

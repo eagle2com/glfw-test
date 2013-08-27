@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cube", "cube_dll\cube_dll.v
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "triangle", "triangle\triangle.vcxproj", "{1507871D-47DF-4C6C-B97E-3C8B167B72FB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "camera", "camera\camera.vcxproj", "{A183B6B5-6184-479F-A759-CB046E1EBAE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -27,6 +29,10 @@ Global
 		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Debug|Win32.Build.0 = Debug|Win32
 		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Release|Win32.ActiveCfg = Release|Win32
 		{1507871D-47DF-4C6C-B97E-3C8B167B72FB}.Release|Win32.Build.0 = Release|Win32
+		{A183B6B5-6184-479F-A759-CB046E1EBAE3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A183B6B5-6184-479F-A759-CB046E1EBAE3}.Debug|Win32.Build.0 = Debug|Win32
+		{A183B6B5-6184-479F-A759-CB046E1EBAE3}.Release|Win32.ActiveCfg = Release|Win32
+		{A183B6B5-6184-479F-A759-CB046E1EBAE3}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
