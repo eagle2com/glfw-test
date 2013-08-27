@@ -11,26 +11,27 @@
 int main()
 {
 	GM::Init();
-	IGameObject* triangle,*cube;
+	IGameObject *triangle,*cube;
 
+	/*
 	while(true)
 	{
 		string ev;
 		cout << ">";
 		cin >> ev;
-		//triangle = GM::Factory::CreateObject("triangle");
-		cube = GM::Factory::CreateObject("cube");
-		cube->SetParam("pos",new glm::vec3(0,0,0));
-		GM::Event::SendEvent(GM::Event::GetID(ev),NULL,false);
+		triangle = GM::Factory::CreateObject("triangle");
+		//cube = GM::Factory::CreateObject("cube");
+		triangle->SetParam("pos",new glm::vec3(0,0,0));
+		GM::Event::SendEvent(GM::Event::GetID(ev),nullptr,false);
 		GM::Event::Tick();
 		GM::Event::Tick();
-		//triangle->Destroy();
-		cube->Destroy();
+		triangle->Destroy();
+		//cube->Destroy();
 		GM::Factory::Reset();
-	}
+	}*/
 
-
-	//GM::Launch();
+	triangle = GM::Factory::CreateObject("triangle");
+	GM::Launch();
 	
 	
     return 0;

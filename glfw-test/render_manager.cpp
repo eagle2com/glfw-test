@@ -20,12 +20,19 @@ namespace GM
 	sf::Thread m_updatethread(&Update);
 	sf::Thread m_webthread(&WebUpdate);
 
+	sf::Mutex render_mutex;
+
 	std::map<std::string, UINT32> m_model_map;
 	CSparseList<CModel> m_model_list(10);
 	UINT32 m_model_id = 0;
 
+	///REMOVE THIS
+	CModel model1;
+	///
+
 	int Init()
 	{
+		glewExperimental = GL_TRUE;
 		glewInit();
 		LoadConfig("config/system.xml");
 		Factory::Init();
@@ -39,7 +46,7 @@ namespace GM
 		settings.stencilBits = 8;
 		settings.antialiasingLevel = 0;
 		settings.majorVersion = 3;
-		settings.minorVersion = 2;
+		settings.minorVersion = 3;
 
 		cout << "opengl version: "<<settings.majorVersion<<"."<<settings.minorVersion;
 		const pugi::char_t* hc = GetValue("h");
@@ -57,6 +64,7 @@ namespace GM
 		m_window = new sf::Window(sf::VideoMode(atoi(wc), atoi(hc)), "OpenGL", style, settings);
 		settings = m_window->getSettings();
 		cout << " -> "<<settings.majorVersion<<"."<<settings.minorVersion<<endl;
+		model1.Load(string("null"));
 		return EXIT_SUCCESS;
 	}
 
@@ -86,6 +94,8 @@ namespace GM
 		//m_updatethread.launch();
 		//m_webthread.launch();
 		sf::Event event;
+
+		
 		
 		sf::Clock main_clock;
 		previous_time = main_clock.getElapsedTime().asMicroseconds();
@@ -110,8 +120,9 @@ namespace GM
 				{
 					if(event.key.code == sf::Keyboard::Escape)
 					{
-						Exit();
+						m_running = false;
 					}
+
 					cout<<"[GM] Key pressed :"<<event.key.code<<endl;
 				}
 			}
@@ -120,6 +131,7 @@ namespace GM
 			
 			sf::sleep(sf::milliseconds(30));
 		}
+		Exit();
 	}
 
 	void Update()
@@ -133,6 +145,7 @@ namespace GM
 
 	void Render()
 	{
+
 		/* This makes our buffer swap syncronized with the monitor's vertical refresh */
 		m_window->setVerticalSyncEnabled(true);
 		m_window->setActive(true);
@@ -140,8 +153,18 @@ namespace GM
 		cout << "started render loop"<<endl;
 		while (m_running)
 		{
+			render_mutex.lock();
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			///REMOVE THIS
+			if (model1.isLoaded())
+			{
+				model1.Draw();
+			}
+			///
+
 			m_window->display();
+			render_mutex.unlock();
+			sf::sleep(sf::milliseconds(30));
 		}
 		cout << "render stopping"<<endl;
 	}

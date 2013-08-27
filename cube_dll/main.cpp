@@ -24,11 +24,6 @@ public:
 
 	void Init()
 	{
-		//CONNECT(CCube,"event1",Event1);
-		//CONNECT(CCube,"ev",e);
-		//Subscribe("event1",std::bind(&CCube::Event1,this,std::placeholders::_1));
-		//Subscribe("e",std::bind(&CCube::e,this,std::placeholders::_1));
-		//Subscribe("ev",std::bind(&CCube::e,this,std::placeholders::_1));
 		CONNECT(CCube,"triangle",onTriangle);
 		CONNECT(CCube,"sfml",onsfmlEvent);
 	}

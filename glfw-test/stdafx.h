@@ -31,4 +31,7 @@ using std::cin;
 //opengl math library glm
 //#include <glm\glm.hpp>
 
+#include <string>
+using std::string;
+
 #include "SparseList.h"

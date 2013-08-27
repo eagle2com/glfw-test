@@ -23,9 +23,10 @@ public:
 
 	bool onsfmlEvent(void* data)
 	{
+		assert(data != nullptr);
 		sf::Event* ev = (sf::Event*)data;
 		if(ev->type == sf::Event::KeyPressed)
-			std::cout << "key code: "<<ev->key.code<<std::endl;
+			std::cout << "[Triangle] key code: "<<ev->key.code<<std::endl;
 		return false;
 	}
 
