@@ -13,6 +13,8 @@
 #include <list>
 #include <thread>
 #include <mutex>
+#include <fstream>
+#include <algorithm>
 
 #include <iostream>
 using std::cout;
