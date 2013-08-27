@@ -19,6 +19,7 @@ public:
 
 	void CCamera::Init()
 	{
+		CONNECT(CCamera, "sfml", onsfmlEvent);
 		m_Projection = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f);
 		// Camera matrix
 		m_View = glm::lookAt(
@@ -26,7 +27,16 @@ public:
 			glm::vec3(0, 0, 0), // and looks at the origin
 			glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 			);
-		this->SetParam("matrix", &GetMatrix());
+		//this->SetParam("matrix", &GetMatrix());
+	}
+
+	bool CCamera::onsfmlEvent(void* data)
+	{
+		assert(data != nullptr);
+		sf::Event* ev = (sf::Event*)data;
+		cout << "camera event" << endl;
+
+		return false;	//by default do not consume the event
 	}
 
 	glm::mat4 CCamera::GetMatrix()

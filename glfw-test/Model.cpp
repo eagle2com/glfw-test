@@ -4,7 +4,7 @@
 
 CModel::CModel(void) : m_isLoaded(false)
 {
-	m_matrix = glm::mat4(1.0f);
+	
 }
 
 
@@ -16,6 +16,7 @@ void CModel::Draw(void)
 {
 	if (!m_isLoaded) 
 		throw string("Attempting to draw an uninitialized model");
+
 
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
@@ -40,32 +41,44 @@ void CModel::Init(void)
 	glBindVertexArray(VertexArrayID);
 }
 
-bool CModel::Load(string& name)
+void CModel::LoadDebugTriangle()
+{
+	if (m_isLoaded)
+		return;
+
+	static const GLfloat g_vertex_buffer_data [] = {
+		-1.0f, -1.0f, 0.0f,
+		1.0f, -1.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+	};
+
+	glGenBuffers(1, &VertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+	m_isLoaded = true;
+}
+
+bool CModel::Load(S_POINT* vertices,int n_vertex, S_FACE* faces, int n_face)
 {
 	if (m_isLoaded)
 		return false;
 
-	static const GLfloat g_vertex_buffer_data[] = {
-   -1.0f, -1.0f, 0.0f,
-   1.0f, -1.0f, 0.0f,
-   0.0f,  1.0f, 0.0f,
-	};
-
+	/* WITHOUT INDEXING
 	glGenBuffers(1,&VertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
-	m_isLoaded = true;
-	cout << "loaded model: " << name << endl;
+	glBufferData(GL_ARRAY_BUFFER, sizeof(S_POINT)*n_vertex, vertices, GL_STATIC_DRAW);
+	*/
 
+	glGenBuffers(1, &elementBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, n_face*sizeof(S_FACE), &faces, GL_STATIC_DRAW);
+	
+	m_isLoaded = true;
 	return true;
 }
 
 bool CModel::isLoaded(void)
 {
 	return m_isLoaded;
-}
-
-glm::mat4 CModel::GetMatrix()
-{
-	return m_matrix;
 }

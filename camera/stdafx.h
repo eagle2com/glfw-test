@@ -15,6 +15,7 @@
 #include <iostream>
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>
+#include <SFML\Window.hpp>
 
 
 

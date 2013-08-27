@@ -40,3 +40,19 @@ using std::cin;
 using std::string;
 
 #include "SparseList.h"
+
+struct S_POINT
+{
+	float x, y, z;
+	S_POINT(float x, float y, float z) : x(x), y(y), z(z)
+	{
+
+	}
+};
+
+struct S_FACE
+{
+	S_FACE(UINT16 a, UINT16 b, UINT16 c) : a(a), b(b), c(c)
+	{}
+	UINT16 a, b, c;
+};

@@ -6,16 +6,18 @@ class CModel
 public:
 	CModel(void);
 	~CModel(void);
-	bool Load(string& name);
+	bool Load(S_POINT* vertices,int n_vertex, S_FACE* faces, int n_face);
 	void Draw(void);	//maybe with some additional params later on?
 	bool isLoaded(void);
 	void Init(void);
-	glm::mat4 GetMatrix();
+	void LoadDebugTriangle();
+
 
 protected:
 	GLuint VertexArrayID;
 	GLuint VertexBuffer;
-	glm::mat4 m_matrix;
+	GLuint elementBuffer;
+	
 
 private:
 	bool m_isLoaded;

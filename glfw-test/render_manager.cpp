@@ -27,9 +27,7 @@ namespace GM
 
 	//sf::Mutex render_mutex;
 
-	std::map<std::string, UINT32> m_model_map;
-	CSparseList<CModel> m_model_list(10);
-	UINT32 m_model_id = 0;
+	
 
 	bool need_gl_context = false;
 	bool needed_gl_context = false;
@@ -37,7 +35,7 @@ namespace GM
 	
 
 	///REMOVE THIS
-	CModel model1;
+	CModel* model1 = nullptr;
 	///
 
 	int Init()
@@ -139,12 +137,17 @@ namespace GM
 						
 					if (event.key.code == sf::Keyboard::L)
 					{
-						
+						///REMOVE THIS
 						render_mutex.lock();
-
-						model1.Init();
-						model1.Load(string("null"));
+						UINT32 id = GM::Factory::LoadModelFromBin("res/meshes/cube");
+						cout << "received ID " << id << endl;
+						model1 = GM::Factory::GetModel(id);
+						cout << "model: " << model1 << endl;
+						
+						//model1.Init();
+						//model1.Load
 						render_mutex.unlock();
+						///
 					}
 					
 
@@ -179,9 +182,20 @@ namespace GM
 		glClearColor ( 0.1f, 0.1f, 0.1f, 1.0f );	
 		cout << "started render loop"<<endl;
 
-		GLuint programID = LoadShaders("shaders/vertex.glsl", "shaders/fragment.glsl");
+		GLuint programID = LoadShaders("res/shaders/vertex.glsl", "res/shaders/fragment.glsl");
 		GLuint MatrixID = glGetUniformLocation(programID, "MVP");
 		IGameObject* main_cam = GM::Factory::CreateObject("camera");
+		glm::mat4* cam_matrix = new glm::mat4;
+		(*cam_matrix) = glm::perspective(45.0f, 4.0f / 3.0f, 0.1f, 100.0f)*
+			glm::lookAt(
+			glm::vec3(4, 3, 3), // Camera is at (4,3,3), in World Space
+			glm::vec3(0, 0, 0), // and looks at the origin
+			glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+			);
+
+
+		main_cam->SetParam("matrix", (void*)cam_matrix);
+		cam_matrix = (glm::mat4*)main_cam->GetParam("matrix");
 
 		while (m_running)
 		{
@@ -190,12 +204,12 @@ namespace GM
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			
 			///REMOVE THIS
-			if (model1.isLoaded())
+			if (model1 && model1->isLoaded())
 			{
 				glUseProgram(programID);
-				//glm::mat4 MVP = main_cam.GetMatrix() * model1.GetMatrix();
-				//glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-				model1.Draw();
+				glm::mat4 MVP = (*cam_matrix)* glm::mat4(1.0f);
+				glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+				model1->Draw();
 			}
 			///
 
@@ -214,19 +228,6 @@ namespace GM
 			sf::sleep(sf::milliseconds(30));
 		}
 	}
-
-	UINT32 GetModel(std::string name)
-	{
-		std::map<std::string, UINT32>::iterator it = m_model_map.find(name);
-		if(it != m_model_map.end())
-			return it->second;
-
-		CModel* model = new CModel();
-		UINT32 id = m_model_list.Push(model);
-		m_model_map[name] = id;
-		return id;
-	}
-
 
 	GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_path){
 

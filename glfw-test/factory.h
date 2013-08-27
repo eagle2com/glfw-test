@@ -1,5 +1,6 @@
 #pragma once
 #include "game_object.h"
+#include "Model.h"
 
 namespace GM
 {
@@ -9,5 +10,9 @@ namespace Factory
 	void Reset();
 	void ClearAll();
 	void Init();
+	UINT32 LoadModelFromBin(std::string name);
+	bool Obj2Bin(std::string name);
+	CModel* GetModel(UINT32 id);
+
 }
 }

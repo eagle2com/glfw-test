@@ -106,8 +106,8 @@ public:
 	void* GetParam(std::string name)
 	{
 		std::map<std::string,CParam*>::iterator it = m_params.find(name);
-		if(it != m_params.end())
-			return it->second;
+		if (it != m_params.end())
+			return it->second->m_data;
 		else
 			return NULL;
 	}

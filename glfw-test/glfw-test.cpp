@@ -31,6 +31,7 @@ int main()
 	}*/
 
 	triangle = GM::Factory::CreateObject("triangle");
+	GM::Factory::Obj2Bin("res/meshes/cube");
 	GM::Launch();
 	
 	
