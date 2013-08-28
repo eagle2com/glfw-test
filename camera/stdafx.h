@@ -11,7 +11,6 @@
 // Windows Header Files:
 #include <windows.h>
 
-#include "../glfw-test/game_object.h"
 #include <iostream>
 #include <glm\glm.hpp>
 #include <glm\ext.hpp>

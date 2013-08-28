@@ -26,13 +26,15 @@ typedef void (*SendEventPtr)(unsigned int, void*,bool);
 typedef FunctionHandle* (*SubscribePtr)(std::string, CallbackFn);
 typedef void (*UnSubPtr)(FunctionHandle*);
 typedef unsigned int (*GetIdPtr)(std::string);
+typedef void (*SetParamPtr)(std::string, void*);
+typedef void* (*GetParamPtr)(std::string);
 
 
 //game object interface definition
 class IGameObject
 {
 public:
-	IGameObject(): m_sendevenetptr(NULL), m_subscribeptr(NULL)
+	IGameObject(): m_sendevenetptr(nullptr), m_subscribeptr(nullptr)
 	{
 	}
 	virtual ~IGameObject()
@@ -131,6 +133,7 @@ private:
 	SubscribePtr m_subscribeptr;
 	UnSubPtr m_unsubptr;
 	GetIdPtr m_getidptr;
+	
 
 
 protected:
