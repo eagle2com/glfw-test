@@ -46,3 +46,17 @@ public:
 	void* GetParam(std::string name);
 	void SetParam(std::string name, void* p);
 };
+
+typedef  void (IGameObject::*IGameObjectFn)(); //pointer to a void member function of IGameObject
+
+#define CONNECT(c_name,e_name,e_fun) Subscribe(e_name,std::bind(&c_name::e_fun,this,std::placeholders::_1));
+
+#define GAME_OBJECT(class_name) \
+	extern "C" __declspec(dllexport) class_name* __cdecl create_object(){ return new class_name; }
+
+struct ObjectRequest
+{
+	ObjectRequest(std::string n, IGameObject* ob = NULL) : name(n), object(ob){}
+	std::string name;
+	IGameObject* object;
+};

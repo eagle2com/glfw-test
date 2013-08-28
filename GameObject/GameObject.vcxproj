@@ -74,6 +74,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="game_object.h" />
     <ClInclude Include="IGameObject.cpp" />
   </ItemGroup>
   <ItemGroup>

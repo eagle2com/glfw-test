@@ -2,9 +2,10 @@
 //
 
 #include "stdafx.h"
-#include "../glfw-test/game_object.h"
+#include "../GameObject/game_object.h"
 #include <iostream>
 #include <SFML\Window.hpp>
+#include <assert.h>
 
 class CTriangle: public IGameObject
 {

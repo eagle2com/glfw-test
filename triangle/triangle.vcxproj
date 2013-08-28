@@ -42,6 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\eagle2com\Documents\libs\glm-0.9.4.2;C:\Users\eagle2com\Documents\libs\SFML-2.0-rc\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\eagle2com\Documents\GitHub\glfw-test\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -58,6 +59,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <Profile>true</Profile>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -97,6 +99,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="triangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameObject\GameObject.vcxproj">
+      <Project>{6372e6f3-bb50-4817-a60b-e2ab5db13e25}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
