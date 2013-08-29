@@ -28,6 +28,7 @@ typedef unsigned int (*GetIdPtr)(std::string);
 typedef void (*SetParamPtr)(std::string, void*);
 typedef void* (*GetParamPtr)(std::string);
 
+
 class IGameObject
 {
 public:
@@ -60,7 +61,7 @@ typedef  void (IGameObject::*IGameObjectFn)(); //pointer to a void member functi
 #define CONNECT(c_name,e_name,e_fun) Subscribe(e_name,std::bind(&c_name::e_fun,this,std::placeholders::_1));
 
 #define GAME_OBJECT(class_name) \
-	extern "C" __declspec(dllexport) class_name* __cdecl create_object(){ return new class_name; }
+	extern "C++" __declspec(dllexport) class_name* __cdecl create_object(){ return new class_name; }
 
 struct ObjectRequest
 {

@@ -6,6 +6,7 @@
 IGameObject::IGameObject(void) : m_sendevenetptr(nullptr), m_subscribeptr(nullptr)
 {
 }
+
 IGameObject::~IGameObject()
 {
 	cout << "deleted object" << endl;

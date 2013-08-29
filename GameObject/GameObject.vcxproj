@@ -52,6 +52,11 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <ExportNamedFunctions>IGameObject();virtual ~IGameObject();%(ExportNamedFunctions)</ExportNamedFunctions>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+      <ForceSymbolReferences>IGameObject()</ForceSymbolReferences>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

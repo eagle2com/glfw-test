@@ -2,7 +2,8 @@
 //
 
 #include "stdafx.h"
-#include "../GameObject/game_object.h"
+//#include "../GameObject/game_object.h"
+#include "../GameObject/IGameObject.h"
 #include <iostream>
 #include <SFML\Window.hpp>
 #include <assert.h>
